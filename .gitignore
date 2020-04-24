@@ -90,3 +90,5 @@ ENV/
 
 # config
 .azure/
+.deployment
+.vscode
