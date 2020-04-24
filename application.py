@@ -1,7 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template, json
+from dotenv import load_dotenv
+import requests
+import os
+import collections
+
 app = Flask(__name__)
 
 
 @app.route("/")
 def hello():
-    return "<h1>Hello World! From Azure</h1>"
+    return render_template('index.html')
