@@ -4,14 +4,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Covidash</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" />
+
+    <!-- USA Map -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/maps.js"></script>
+    <script src="https://www.amcharts.com/lib/4/geodata/usaLow.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dark.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <!-- Social logos -->
+    <script src="https://kit.fontawesome.com/f4dd976b2e.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <h1>H1</h1>
-    <h2>H2</h2>
-    <h3>H3</h3>
-    <h4>H4</h4>
+    <nav class="navbar navbar-expand-md sticky-top navbar-dark">
+        <div class="openbtn" onclick="openNav()"><i class="fas fa-bars"></i>&nbsp;Coronavirus Dashboard</div>
+        <!-- <input type="checkbox" id="switch" /><label for="switch">Toggle</label> -->
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
+
+            <div class="social"><strong>Connect with me</strong>
+                <a href="https://github.com/apiwatc/covid-dash" target="_blank" class="git-ic" role="button"><i
+                        class="fab fa-lg fa-github"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" class="li-ic" role="button"><i
+                        class="fab fa-lg fa-linkedin-in"></i></a>
+                <a href="" target="_blank" class="tw-ic" role="button"><i class="fab fa-lg fa-twitter"></i></a>
+                <a href="" target="_blank" class="email-ic" role="button"><i class="fas fa-lg fa-envelope"></i></a>
+            </div>
+            <div class="madeWith">
+                <small>Made with <span style="color: red;"> &#x2764; </span> by Someone</small>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-sm">
+                <div class="row">
+
+                    <div class="cards-map"><strong>US Map shows cases by states</strong>
+                        <div id="chartdiv"></div>
+                        <div id="state" style="display: none;">{{ states|tojson }}</div>
+                        <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+                    </div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+                <div class="row mt-5 ml-1 mr-1" id="chart">
+                    <div class="col-sm" style="width: 50%;">
+                        <h6 class=""><strong>Confirmed Cases in last 7 days</strong></h6>
+                        <div class="chart-container">
+                            <canvas id="myChart"></canvas>
+                            <div id="timeline" style="display: none;">{{ timeline|tojson }}</div>
+                            <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+                        </div>
+
+                    </div>
+                    <div class="col-sm" style="width: 50%;">
+                        <h6 class=""><strong>Total and today</strong></h6>
+                        <div class="chart-container">
+                            <canvas id="myChartDoughnut"></canvas>
+                            <div id="total" style="display: none;">{{ total|tojson }}</div>
+                            <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm" style="display:table; width:100%;">
+                <div class="row">
+                    <div class="col-sm-6 pl-3 pr-3" style="display: table-cell;">
+                        <div style="height: fit-content;">
+                            <div class=" cards-case">
+                                <h5 class="card-title"><strong>Confirmed</strong></h5>
+                                <h2><strong class="card-text text-primary">
+                                        {{"{:,}".format(total.cases)}}
+                                    </strong></h2>
+                            </div>
+                            <div class="cards-case">
+                                <h5 class="card-title"><strong>Recovered</strong></h5>
+                                <h2><strong class="card-text text-success">
+                                        {{"{:,}".format(total.recovered)}}
+                                    </strong></h2>
+                            </div>
+                            <div class="cards-case">
+                                <h5 class="card-title"><strong>Decease</strong></h5>
+                                <h2><strong class="card-text text-danger">
+                                        {{"{:,}".format(total.deaths)}}
+                                    </strong></h2>
+                            </div>
+                            <div class="cards-case">
+                                <h5 class="card-title"><strong>Active</strong></h5>
+                                <h2><strong class="card-text text-warning">
+                                        {{"{:,}".format(total.active)}}
+                                    </strong></h2>
+                            </div>
+                            <div class="cards-case">
+                                <h5 class="card-title"><strong>Tests</strong></h5>
+                                <h2><strong class="card-text text-info">
+                                        {{"{:,}".format(total.tests)}}
+                                    </strong></h2>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="cards-news">
+                                <h5 class=""><strong>&nbsp;News</strong></h5>
+                                <div class="news-overview">
+                                    {% for article in news.articles %}
+                                    <a href="{{ article.url }}" target="_blank" style="text-decoration: none;">
+                                        <div class="news-card">
+                                            <div class="card-horizontal">
+                                                <div class="img-square-wrapper">
+                                                    <img src="{{ article.urlToImage }}" alt="news image">
+                                                </div>
+                                                <div class="title"><strong>{{ article.title }}</strong><span
+                                                        style="color: rgb(0, 42, 230);"><strong>&nbsp;&mdash;&nbsp;{{ article.source.name }}</strong></span><br><br>
+
+                                                    <small style="float: right;">Posted on
+                                                        {{ article.publishedAt[:10]}}</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 mb-3">
+                        <div class="tableFixHead">
+                            <table class="table table-sm table-hover table-striped text-secondary">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>States</th>
+                                        <th>Confirmed</th>
+                                        <!-- <th>Recovered</th> -->
+                                        <th>Decease</th>
+                                        <th>Active</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for state in states %}
+                                    <tr>
+                                        <td><b>{{state.state}}</b></td>
+
+                                        <!-- confirmed case col -->
+                                        {% if state.cases %}
+                                        <td>{{"{:,}".format(state.cases)}}
+                                            {% if state.todayCases != 0 %}
+                                            <sup style=" color:rgb(0, 255, 0);">
+                                                +{{state.todayCases}}</sup>
+                                            {% endif %}
+                                        </td>
+                                        {% else %}
+                                        <td>n/a</td>
+                                        {% endif %}
+
+                                        <!-- death col -->
+                                        {% if state.deaths != 0 %}
+                                        <td>{{"{:,}".format(state.deaths)}}
+                                            <!-- {% if state.todayDeaths != 0 %} -->
+                                            <sup style="color:rgb(0, 255, 0);">+{{state.todayDeaths}}</sup>
+                                            <!-- {% endif %} -->
+                                        </td>
+                                        {% else %}
+                                        <td>0</td>
+                                        {% endif %}
+
+                                        <!-- active col -->
+                                        {% if state.active %}
+                                        <td>{{"{:,}".format(state.active)}}</td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
