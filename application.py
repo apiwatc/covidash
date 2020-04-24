@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def hello():
+def index():
     state, usa = get_cases()
     news = get_news()
     timeline = get_history()
