@@ -127,7 +127,12 @@
                                         <div class="news-card">
                                             <div class="card-horizontal">
                                                 <div class="img-square-wrapper">
+                                                    {% if article.urlToImage %}
                                                     <img src="{{ article.urlToImage }}" alt="news image">
+                                                    {% else %}
+                                                    <img src="http://placehold.jp/24/222831/ffffff/70x70.png?text=..."
+                                                        alt="news image">
+                                                    {% endif %}
                                                 </div>
                                                 <div class="title"><strong>{{ article.title }}</strong><span
                                                         style="color: rgb(0, 42, 230);"><strong>&nbsp;&mdash;&nbsp;{{ article.source.name }}</strong></span><br><br>

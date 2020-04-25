@@ -2,7 +2,6 @@ html,
 body {
     font-family: "Roboto", sans-serif;
     box-sizing: border-box;
-    /* background-color: rgb(0, 123, 255); */
     /* background-color: #222831; */
     background-color: #191e25;
     color: whitesmoke;
@@ -36,14 +35,12 @@ nav {
     color: #818181;
     transition: 0.3s;
     display: block;
-    /* margin-top: 20px; */
 }
 
 .social,
 .madeWith {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
     margin-top: 20px;
 }
@@ -73,9 +70,7 @@ nav {
 .openbtn {
     font-size: 20px;
     cursor: pointer;
-    /* background-color: #111; */
     color: white;
-    /* padding: 10px 15px; */
     border: none;
 }
 
@@ -153,13 +148,9 @@ label:active:after {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* background-color: white; */
     background-color: transparent;
-    /* margin-bottom: 20px; */
     -webkit-column-break-inside: avoid;
-    /* padding: 24px; */
     box-sizing: border-box;
-    /* border: 1px solid black; */
 }
 
 .cards-case {
@@ -167,11 +158,8 @@ label:active:after {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* background-color: white; */
     background-color: transparent;
-    /* margin-bottom: 20px; */
     -webkit-column-break-inside: avoid;
-    /* padding: 24px; */
     box-sizing: border-box;
     border: 1px solid #353f4d;
     padding: 5px 0;
@@ -181,15 +169,10 @@ label:active:after {
     padding-top: 20px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     width: 100%;
     background-color: #222831;
-    /* background-color: transparent; */
-    /* margin-bottom: 20px; */
     -webkit-column-break-inside: avoid;
-    /* padding: 24px; */
     box-sizing: border-box;
-    /* border: 1px solid black; */
     margin-top: 10px;
     height: 40vh;
 }
@@ -201,63 +184,44 @@ label:active:after {
 #myChart {
     width: 25%;
     height: 100%;
-    /* height: 50%; */
-    /* display: block; */
 }
 
 #chart {
-    /* border: 1px solid #353f4d; */
     box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.16),
         0 0 0 1px rgba(0, 0, 0, 0.08);
     margin-top: 20px;
     padding-top: 10px;
     background-color: #222831;
-    /* border: 1px solid #353f4d; */
 }
 
 #chartdiv {
     position: relative;
-    /* left: 0; */
     display: block;
-    /* margin: 0 auto; */
     margin-left: auto;
     margin-right: auto;
     width: 900px;
     height: 500px;
-    /* background-color: transparent; */
-    /* background-color: #444; */
-    /* border: 1px solid black; */
-    /* margin-top: -20px; */
 }
 
 .news-overview {
     display: grid;
-    /* grid-template-columns: repeat(auto-fit, minmax(265px, 1fr)); */
-    /* grid-auto-rows: 94px; */
     grid-gap: 5px;
-    /* margin: 20px; */
     height: 550px;
     overflow: auto;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    /* background-color: #f1f0f0; */
     background-color: transparent;
     margin-bottom: 20px;
     -webkit-column-break-inside: avoid;
     padding: 0px 5px 10px 10px;
     box-sizing: border-box;
-    /* border-radius: 10px; */
-    /* box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.16),
-        0 0 0 1px rgba(0, 0, 0, 0.08); */
 }
 
 .news-card {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
     padding: 10px;
-    /* background-color: rgba(255, 255, 255); */
     background-color: #222831;
     color: rgb(255, 255, 255);
     border-radius: 5px;
@@ -272,10 +236,8 @@ label:active:after {
         rgb(0, 144, 72) 1%,
         rgb(0, 144, 200) 100%
     ); */
-    /* background-image: linear-gradient(-45deg, #8f479a 1%, #dc2a74 100%); */
+    background-color: #353f4d;
     color: white;
-    /* border-right: 5px solid rgb(158, 158, 158); */
-    /* border-color: ; */
     border: 0;
 }
 
@@ -291,7 +253,6 @@ label:active:after {
     margin-right: 20px;
     box-shadow: 0px 5px 10px 0 rgba(0, 0, 0, 0.16),
         0 0 0 1px rgba(0, 0, 0, 0.08);
-    /* border: 1px solid #111; */
 }
 
 .news-card .title {
@@ -308,11 +269,9 @@ label:active:after {
 .tableFixHead {
     overflow-y: auto;
     overflow-x: auto;
-    /* height: 850px;
-    width: 500px; */
     height: calc(100vh - 80px);
     width: 100%;
-    /* overflow: auto; */
+    padding: 0 5px 0 5px;
 }
 
 .tableFixHead thead th {
@@ -336,8 +295,4 @@ label:active:after {
     #chart {
         display: none;
     }
-    /* #chartdiv {
-        width: 450px;
-        height: 250px;
-    } */
 }
