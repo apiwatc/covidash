@@ -134,11 +134,12 @@ am4core.ready(function () {
     heatLegend.series = polygonSeries;
     heatLegend.align = "right";
     heatLegend.valign = "bottom";
-    heatLegend.width = am4core.percent(20);
-    heatLegend.marginRight = am4core.percent(27);
-    // heatLegend.background.fill = am4core.color("#000");
-    // heatLegend.background.fillOpacity = 0.05;
-    // heatLegend.padding(5, 5, 5, 5);
+    heatLegend.width = am4core.percent(15);
+    heatLegend.marginRight = am4core.percent(5);
+    heatLegend.background.fill = am4core.color("#111");
+    heatLegend.background.fillOpacity = 0.05;
+    heatLegend.padding(5, 5, 5, 5);
+    heatLegend.margin(5, 5, 5, 5);
 
     // Set up custom heat map legend labels using axis ranges
     var minRange = heatLegend.valueAxis.axisRanges.create();
