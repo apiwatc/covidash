@@ -44,7 +44,7 @@ var chart = new Chart(ctx, {
                     color: "rgba(255,99,132,0.2)"
                 },
                 ticks: {
-                    fontColor: "white",
+                    fontColor: "black",
                     fontSize: 10,
                     stepSize: 200000,
                     beginAtZero: true
@@ -55,14 +55,14 @@ var chart = new Chart(ctx, {
                     display: false
                 },
                 ticks: {
-                    fontColor: "white",
+                    fontColor: "black",
                     fontSize: 10,
                 },
             }],
         },
         legend: {
             labels: {
-                fontColor: "white",
+                fontColor: "black",
                 fontSize: 12
             }
         }
@@ -74,7 +74,9 @@ var chart = new Chart(ctx, {
 var dataTotal = JSON.parse(document.getElementById('total').textContent);
 var number = [];
 for (const s in dataTotal) {
-    number.push(Number(dataTotal[s]))
+    if (s.includes("Million")) {
+        number.push(dataTotal[s])
+    }
 }
 
 
@@ -86,26 +88,13 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ["cases",
-            "todayCases",
-            "deaths",
-            "todayDeaths",
-            "recovered",
-            "active",
-            "critical"],
+        labels: ['Cases', 'Deaths', 'Tests'],
         datasets: [{
             label: 'My First dataset',
-            backgroundColor: ['#58508d',
-                '#4355db',
-                '#34bbe6',
-                '#49da9a',
-                '#f7d038',
-                '#FF7F00',
-                '#e6261f'
-            ],
+            backgroundColor: ['#6CA0DC', '#FFA600', '#49da9a',],
             // borderColor: 'rgb(255, 99, 132)',
             borderWidth: 0,
-            data: number.slice(3, 10)
+            data: number
         }]
     },
 
@@ -116,7 +105,7 @@ var chart = new Chart(ctx, {
             position: "right",
             align: "middle",
             labels: {
-                fontColor: "white",
+                fontColor: "black",
             }
         },
     }
