@@ -56,35 +56,35 @@
             <div class="container-fluid pl-5 pr-5">
                 <div class="row mt-3">
                     <!-- Case overview -->
-                    <div class="col-sm-3 pl-1 pr-3">
-                        <div class="card-case">
-                            <ul class="list-group list-group-flush text-center">
-                                <li class="list-group-item">
-                                    <h5 class="card-title"><strong>Confirmed</strong></h5>
+                    <div class="col-lg-3 pl-1 pr-1">
+                        <div class="card-overview">
+                            <ul class="text-center">
+                                <li class="cases">
+                                    <h5><strong>Confirmed</strong></h5>
                                     <h2><strong class="card-text text-primary">
                                             {{"{:,}".format(total.cases)}}
                                         </strong></h2>
                                 </li>
-                                <li class="list-group-item">
-                                    <h5 class="card-title"><strong>Recovered</strong></h5>
+                                <li class="cases">
+                                    <h5><strong>Recovered</strong></h5>
                                     <h2><strong class="card-text text-success">
                                             {{"{:,}".format(total.recovered)}}
                                         </strong></h2>
                                 </li>
-                                <li class="list-group-item">
-                                    <h5 class="card-title"><strong>Decease</strong></h5>
+                                <li class="cases">
+                                    <h5><strong>Decease</strong></h5>
                                     <h2><strong class="card-text text-danger">
                                             {{"{:,}".format(total.deaths)}}
                                         </strong></h2>
                                 </li>
-                                <li class="list-group-item">
-                                    <h5 class="card-title"><strong>Active</strong></h5>
+                                <li class="cases">
+                                    <h5><strong>Active</strong></h5>
                                     <h2><strong class="card-text text-warning">
                                             {{"{:,}".format(total.active)}}
                                         </strong></h2>
                                 </li>
-                                <li class="list-group-item">
-                                    <h5 class="card-title"><strong>Tested</strong></h5>
+                                <li class="cases" style="border: 0;">
+                                    <h5><strong>Tested</strong></h5>
                                     <h2><strong class="card-text text-info">
                                             {{"{:,}".format(total.tests)}}
                                         </strong></h2>
@@ -95,9 +95,9 @@
                     <!-- End Case overview -->
 
                     <!-- Map and Charts -->
-                    <div class="col-sm-9 pr-5">
+                    <div class="col pr-5 mr-1" id="visual">
                         <div class="container-fluid">
-                            <div class="row justify-content-md-center" id="visual">
+                            <div class="row justify-content-md-center">
                                 <div class="col-lg-8">
                                     <div class="cards-map">
                                         <strong>Cases by States</strong>
@@ -150,7 +150,7 @@
             <div class="container-fluid pl-5 pr-5 pb-5 mt-3">
                 <div class="row justify-content-md-center">
                     <!-- Table -->
-                    <div class="col pl-1 pr-1">
+                    <div class="col pl-1 pr-1 mb-3">
                         <div class="tableFixHead">
                             <table class="table table-sm">
                                 <thead>
@@ -202,7 +202,7 @@
                     <!-- End Table -->
 
 
-                    <div class="col pl-3 pr-0">
+                    <div class="col pl-1 pr-1 mb-3">
                         <div class="card" style="width:100%; overflow:auto; height:50vh;">
                             <div class="card-header">
                                 <strong>Placeholder</strong>
@@ -233,7 +233,7 @@
                     </div>
 
                     <!-- News -->
-                    <div class="col pl-3 pr-0">
+                    <div class="col pl-1 pr-1">
                         <div class="card" style="width:100%; overflow:auto; height:50vh;">
                             <div class="card-header">
                                 Top News
