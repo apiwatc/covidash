@@ -9,11 +9,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    state, usa = get_cases()
+    state, total = get_cases()
     news = get_news()
     timeline = get_history()
 
-    return render_template('index.html', states=state, total=usa, news=news, timeline=timeline)
+    return render_template('index.html', states=state, total=total, news=news, timeline=timeline, )
 
 
 def get_cases():
@@ -21,14 +21,16 @@ def get_cases():
 
     CASE_URL = 'https://corona.lmao.ninja/'
 
+    state = total = {}
+
     if requests.get(CASE_URL).status_code == 200:
         res_state = requests.get(CASE_URL + 'v2/states')
         state = json.loads(res_state.text)
 
         res_usa = requests.get(CASE_URL + 'v2/countries/us')
-        usa = json.loads(res_usa.text)
+        total = json.loads(res_usa.text)
 
-        # clean up data
+        # clean up States data
         outside = {
             'Wuhan Repatriated': 0,
             'Diamond Princess Cruise': 0,
@@ -44,10 +46,8 @@ def get_cases():
         for i in range(len(state)-1, -1, -1):
             if state[i]['state'] in outside:
                 del state[i]
-    else:
-        state, usa = {}, {}
 
-    return state, usa
+    return state, total
 
 
 def get_news():
