@@ -5,6 +5,7 @@ import os
 import collections
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 
 @app.route("/")
@@ -78,13 +79,13 @@ def get_news():
 
 
 def get_history():
+    """ Return US historical timeline """
+
     URL = 'https://corona.lmao.ninja/v2/historical/us'
 
     res_history = requests.get(URL)
     timeline = json.loads(res_history.text)
 
-    # for k, v in timeline['timeline']['cases'].items():
-    #     timeline['timeline']['cases'][k] = f'{v:,}'
     weekly = collections.Counter(timeline['timeline']['cases']).most_common(7)
     weekly.reverse()
 

@@ -28,6 +28,7 @@
 </head>
 
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-md sticky-top navbar-dark">
         <div class="openbtn" onclick="openNav()"><i class="fas fa-bars"></i>&nbsp;Coronavirus Dashboard</div>
         <!-- <input type="checkbox" id="switch" /><label for="switch">Toggle</label> -->
@@ -48,14 +49,14 @@
         </div>
     </nav>
 
-
+    <!-- Main content -->
     <div class="grid-container">
-
         <main class="main">
-
+            <!-- Top row content -->
             <div class="container-fluid pl-5 pr-5">
                 <div class="row mt-3">
-                    <div class="col-sm-3 pl-1 pr-1">
+                    <!-- Case overview -->
+                    <div class="col-sm-3 pl-1 pr-3">
                         <div class="card-case">
                             <ul class="list-group list-group-flush text-center">
                                 <li class="list-group-item">
@@ -91,7 +92,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-9 pr-3 rounded">
+                    <!-- End Case overview -->
+
+                    <!-- Map and Charts -->
+                    <div class="col-sm-9 pr-5">
                         <div class="container-fluid">
                             <div class="row justify-content-md-center" id="visual">
                                 <div class="col-lg-8">
@@ -105,7 +109,7 @@
                                 <div class="col-lg-4">
                                     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                     <ul class="list-group list-group-flush">
-                                        <div class="card-chart" style="background-color: rgb(240, 240, 240)">
+                                        <div class="card-chart">
                                             <li class="list-group-item">
                                                 <div class="col-sm">
                                                     <h6 class=""><strong>Last 7 days</strong></h6>
@@ -133,89 +137,23 @@
                                             </li>
                                         </div>
                                     </ul>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
+                    <!-- End Map and Charts -->
                 </div>
             </div>
+            <!-- End Top row content -->
 
-
-
-
-
-            <div class="container-fluid pl-5 pr-5 pb-5">
+            <!-- Second row -->
+            <div class="container-fluid pl-5 pr-5 pb-5 mt-3">
                 <div class="row justify-content-md-center">
-
+                    <!-- Table -->
                     <div class="col pl-1 pr-1">
-                        <div class="card" style="width:100%; overflow:auto; height:50vh;">
-                            <div class="card-header">
-                                Top News
-                            </div>
-                            {% for article in news.articles %}
-                            <ul class="list-group list-group-flush">
-                                <a href="{{ article.url }}" target="_blank" style="color: #111;">
-                                    <li class="list-group-item">
-                                        <div class="card-horizontal">
-                                            <div class="img-square-wrapper">
-                                                {% if article.urlToImage %}
-                                                <img src="{{ article.urlToImage }}" alt="news image">
-                                                {% else %}
-                                                <img src="http://placehold.jp/24/222831/ffffff/70x70.png?text=..."
-                                                    alt="news image">
-                                                {% endif %}
-                                            </div>
-                                            <div class="title"><strong>{{ article.title }}</strong><span
-                                                    style="color: rgb(0, 42, 230);"><strong>&nbsp;&mdash;&nbsp;{{ article.source.name }}</strong></span><br><br>
-
-                                                <small style="float: right;">Posted on
-                                                    {{ article.publishedAt[:10] }}</small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </a>
-                            </ul>
-                            {% endfor %}
-                        </div>
-                    </div>
-
-                    <div class="col pl-1 pr-1">
-                        <div class="card" style="width:100%; overflow:auto; height:50vh;">
-                            <div class="card-header">
-                                <strong>Placeholder</strong>
-                            </div>
-
-                            <ul class="list-group list-group-flush">
-                                <a href="" target="_blank" style="color: #111;">
-                                    <li class="list-group-item">
-                                        <div class="card-horizontal">
-                                            <div class="img-square-wrapper">
-
-                                                <img src="http://placehold.jp/24/222831/ffffff/70x70.png?text=..."
-                                                    alt="news image">
-
-                                            </div>
-                                            <div class="title"><strong></strong><span
-                                                    style="color: rgb(0, 42, 230);"><strong>&nbsp;&mdash;&nbsp;</strong></span><br><br>
-
-                                                <small style="float: right;">Posted on
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </a>
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <div class="col pl-1 pr-1">
-                        <div class="tableFixHead rounded">
+                        <div class="tableFixHead">
                             <table class="table table-sm">
-                                <thead class="thead-light">
+                                <thead>
                                     <tr>
                                         <th scope="col">States</th>
                                         <th scope="col">Confirmed</th>
@@ -223,10 +161,10 @@
                                         <th scope="col">Active</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-light">
+                                <tbody class="">
                                     {% for state in states %}
                                     <tr>
-                                        <td style="padding-left: 10px;"><b>{{state.state}}</b></td>
+                                        <td><b>{{state.state}}</b></td>
 
                                         <!-- confirmed case col -->
                                         {% if state.cases %}
@@ -261,22 +199,89 @@
                             </table>
                         </div>
                     </div>
+                    <!-- End Table -->
 
+
+                    <div class="col pl-3 pr-0">
+                        <div class="card" style="width:100%; overflow:auto; height:50vh;">
+                            <div class="card-header">
+                                <strong>Placeholder</strong>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+                                <a href="" target="_blank" style="color: #111;">
+                                    <li class="list-group-item">
+                                        <div class="card-horizontal">
+                                            <div class="img-square-wrapper">
+
+                                                <img src="http://placehold.jp/24/222831/ffffff/70x70.png?text=..."
+                                                    alt="news image">
+
+                                            </div>
+                                            <div class="title"><strong></strong><span
+                                                    style="color: rgb(0, 42, 230);"><strong>&nbsp;&mdash;&nbsp;</strong></span><br><br>
+
+                                                <small style="float: right;">Posted on
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                    <!-- News -->
+                    <div class="col pl-3 pr-0">
+                        <div class="card" style="width:100%; overflow:auto; height:50vh;">
+                            <div class="card-header">
+                                Top News
+                            </div>
+                            {% for article in news.articles %}
+                            <ul class="list-group list-group-flush">
+                                <a href="{{ article.url }}" target="_blank" style="color: #111;">
+                                    <li class="list-group-item">
+                                        <div class="card-horizontal">
+                                            <div class="img-square-wrapper">
+                                                {% if article.urlToImage %}
+                                                <img src="{{ article.urlToImage }}" alt="news image">
+                                                {% else %}
+                                                <img src="http://placehold.jp/24/222831/ffffff/70x70.png?text=..."
+                                                    alt="news image">
+                                                {% endif %}
+                                            </div>
+                                            <div class="title"><strong>{{ article.title }}</strong><span
+                                                    style="color: rgb(0, 42, 230);"><strong>&nbsp;&mdash;&nbsp;{{ article.source.name }}</strong></span><br><br>
+
+                                                <small style="float: right;">Posted on
+                                                    {{ article.publishedAt[:10] }}</small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- End News -->
                 </div>
+            </div>
+            <!-- End Second row -->
         </main>
+    </div>
+    <!-- End Main content -->
 
-
-
-        <script src="{{ url_for('static', filename='js/script.min.js') }}"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/script.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 </body>
 
