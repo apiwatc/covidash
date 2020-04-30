@@ -53,10 +53,10 @@
     <div class="grid-container">
         <main class="main">
             <!-- Top row content -->
-            <div class="container-fluid pl-5 pr-5">
-                <div class="row mt-3">
+            <div class="container-fluid pl-5 pr-5 mt-4">
+                <div class="row">
                     <!-- Case overview -->
-                    <div class="col-lg-3 pl-1 pr-1">
+                    <div class="col-lg-3 pl-3 pr-3">
                         <div class="card-overview">
                             <ul class="text-center">
                                 <li class="cases">
@@ -64,6 +64,9 @@
                                     <h2><strong class="card-text text-primary">
                                             {{"{:,}".format(total.cases)}}
                                         </strong></h2>
+                                    {% if total.todayCases != 0 %}
+                                    <h6 class="text-primary">(+{{"{:,}".format(total.todayCases)}})</h6>
+                                    {% endif %}
                                 </li>
                                 <li class="cases">
                                     <h5><strong>Recovered</strong></h5>
@@ -76,6 +79,9 @@
                                     <h2><strong class="card-text text-danger">
                                             {{"{:,}".format(total.deaths)}}
                                         </strong></h2>
+                                    {% if total.todayCases != 0 %}
+                                    <h6 class="text-danger">(+{{"{:,}".format(total.todayDeaths)}})</h6>
+                                    {% endif %}
                                 </li>
                                 <li class="cases">
                                     <h5><strong>Active</strong></h5>
@@ -84,7 +90,7 @@
                                         </strong></h2>
                                 </li>
                                 <li class="cases" style="border: 0;">
-                                    <h5><strong>Tested</strong></h5>
+                                    <h5><strong>Tests</strong></h5>
                                     <h2><strong class="card-text text-info">
                                             {{"{:,}".format(total.tests)}}
                                         </strong></h2>
@@ -95,7 +101,7 @@
                     <!-- End Case overview -->
 
                     <!-- Map and Charts -->
-                    <div class="col pr-5 mr-1" id="visual">
+                    <div class="col ml-3 mr-3" id="visual">
                         <div class="container-fluid">
                             <div class="row justify-content-md-center">
                                 <div class="col-lg-8">
@@ -106,13 +112,13 @@
                                         <script src="{{ url_for('static', filename='js/map.js') }}"></script>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-4 pt-3">
                                     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
                                     <ul class="list-group list-group-flush">
                                         <div class="card-chart">
                                             <li class="list-group-item">
-                                                <div class="col-sm">
-                                                    <h6 class=""><strong>Last 7 days</strong></h6>
+                                                <h6 class="text-left"><strong>Daily Case</strong></h6>
+                                                <div class="col-sm pr-0 pl-0">
                                                     <div class="chart-container">
                                                         <canvas id="myChart"></canvas>
                                                         <div id="timeline" style="display: none;">{{ timeline|tojson }}
@@ -121,12 +127,12 @@
                                                             src="{{ url_for('static', filename='js/charts.js') }}"></script>
                                                     </div>
                                                 </div>
+                                            </li>
                                         </div>
-                                        </li>
                                         <div class="card-chart">
                                             <li class="list-group-item">
+                                                <h6 class="text-left"><strong>Per Million</strong></h6>
                                                 <div class="col-sm">
-                                                    <h6 class=""><strong>Per Million</strong></h6>
                                                     <div class="chart-container">
                                                         <canvas id="myChartDoughnut"></canvas>
                                                         <div id="total" style="display: none;">{{ total|tojson }}</div>
@@ -147,68 +153,72 @@
             <!-- End Top row content -->
 
             <!-- Second row -->
-            <div class="container-fluid pl-5 pr-5 pb-5 mt-3">
+            <div class="container-fluid pl-5 pr-5 pb-5 mt-5">
                 <div class="row justify-content-md-center">
                     <!-- Table -->
-                    <div class="col pl-1 pr-1 mb-3">
-                        <div class="tableFixHead">
-                            <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">States</th>
-                                        <th scope="col">Confirmed</th>
-                                        <th scope="col">Decease</th>
-                                        <th scope="col">Active</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="">
-                                    {% for state in states %}
-                                    <tr>
-                                        <td><b>{{state.state}}</b></td>
+                    <div class="col pl-3 pr-3 mb-3">
+                        <div class="card">
+                            <div class="tableFixHead">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">States</th>
+                                            <th scope="col">Confirmed</th>
+                                            <th scope="col">Decease</th>
+                                            <th scope="col">Active</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="">
+                                        {% for state in states %}
+                                        <tr>
+                                            <td><b>{{state.state}}</b></td>
 
-                                        <!-- confirmed case col -->
-                                        {% if state.cases %}
-                                        <td>{{"{:,}".format(state.cases)}}
-                                            {% if state.todayCases != 0 %}
-                                            <sup style=" color:rgb(0, 255, 0);">
-                                                +{{state.todayCases}}</sup>
+                                            <!-- confirmed case col -->
+                                            {% if state.cases %}
+                                            <td>{{"{:,}".format(state.cases)}}
+                                                {% if state.todayCases != 0 %}
+                                                <sup class="text-primary">
+                                                    +{{state.todayCases}}</sup>
+                                                {% endif %}
+                                            </td>
+                                            {% else %}
+                                            <td>n/a</td>
                                             {% endif %}
-                                        </td>
-                                        {% else %}
-                                        <td>n/a</td>
-                                        {% endif %}
 
-                                        <!-- death col -->
-                                        {% if state.deaths != 0 %}
-                                        <td>{{"{:,}".format(state.deaths)}}
-                                            <!-- {% if state.todayDeaths != 0 %} -->
-                                            <sup style="color:rgb(0, 255, 0);">+{{state.todayDeaths}}</sup>
-                                            <!-- {% endif %} -->
-                                        </td>
-                                        {% else %}
-                                        <td>0</td>
-                                        {% endif %}
+                                            <!-- death col -->
+                                            {% if state.deaths != 0 %}
+                                            <td>{{"{:,}".format(state.deaths)}}
+                                                {% if state.todayDeaths != 0 %}
+                                                <sup class="text-primary">+{{state.todayDeaths}}</sup>
+                                                {% endif %}
+                                            </td>
+                                            {% else %}
+                                            <td>n/a</td>
+                                            {% endif %}
 
-                                        <!-- active col -->
-                                        {% if state.active %}
-                                        <td>{{"{:,}".format(state.active)}}</td>
-                                        {% endif %}
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                                            <!-- active col -->
+                                            {% if state.active %}
+                                            <td>{{"{:,}".format(state.active)}}</td>
+                                            {% else %}
+                                            <td>n/a</td>
+                                            {% endif %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <!-- End Table -->
 
 
-                    <div class="col pl-1 pr-1 mb-3">
+                    <div class="col pl-3 pr-3 mb-3">
                         <div class="card" style="width:100%; overflow:auto; height:50vh;">
                             <div class="card-header">
                                 <strong>Placeholder</strong>
                             </div>
 
-                            <ul class="list-group list-group-flush">
+                            <!-- <ul class="list-group list-group-flush">
                                 <a href="" target="_blank" style="color: #111;">
                                     <li class="list-group-item">
                                         <div class="card-horizontal">
@@ -227,13 +237,13 @@
                                         </div>
                                     </li>
                                 </a>
-                            </ul>
+                            </ul> -->
 
                         </div>
                     </div>
 
                     <!-- News -->
-                    <div class="col pl-1 pr-1">
+                    <div class="col pl-3 pr-3">
                         <div class="card" style="width:100%; overflow:auto; height:50vh;">
                             <div class="card-header">
                                 Top News
