@@ -13,7 +13,7 @@ def index():
     news = get_news()
     timeline = get_history()
 
-    return render_template('index.html', states=state, total=total, news=news, timeline=timeline, )
+    return render_template('index.html', states=state, total=total, news=news, timeline=timeline)
 
 
 def get_cases():
@@ -85,7 +85,19 @@ def get_history():
     res_history = requests.get(URL)
     timeline = json.loads(res_history.text)
 
-    weekly = collections.Counter(timeline['timeline']['cases']).most_common(7)
+    weekly = collections.Counter(timeline['timeline']['cases']).most_common(8)
     weekly.reverse()
 
-    return dict(weekly)
+    threshold = {}
+    date = [weekly[i][0] for i in range(1, len(weekly))]
+    cases = []
+    diff = weekly[0][1]
+
+    for i in range(1, len(weekly)):
+        cases.append(weekly[i][1] - diff)
+        diff = weekly[i][1]
+
+    threshold['date'] = date
+    threshold['cases'] = cases
+
+    return threshold
