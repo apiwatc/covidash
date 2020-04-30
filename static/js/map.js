@@ -20,30 +20,9 @@ am4core.ready(function () {
     polygonSeries.heatRules.push({
         property: "fill",
         target: polygonSeries.mapPolygons.template,
-        min: am4core.color("#0000ff").brighten(0.1).lighten(1),
-        max: am4core.color("#ff0066").brighten(1)
+        min: am4core.color("#ffa41b").brighten(1).lighten(0.4),
+        max: am4core.color("red").brighten(1)
     });
-
-    // polygonSeries.mapPolygons.template.adapter.add("fill", function (fill, target) {
-    //     if (target.dataItem.value > 5000) {
-    //         return am4core.color("#ff0066");
-    //     }
-    //     else if (target.dataItem.value > 4000) {
-    //         return am4core.color("#b8249c").brighten(1);
-    //     }
-    //     else if (target.dataItem.value > 3000) {
-    //         return am4core.color("#9933b2").brighten(1);
-    //     }
-    //     else if (target.dataItem.value > 2000) {
-    //         return am4core.color("#853dc2").brighten(1);
-    //     }
-    //     else if (target.dataItem.value > 1000) {
-    //         return am4core.color("#7047d1").brighten(1);
-    //     }
-    //     else {
-    //         return am4core.color("#5c52e0").brighten(1);
-    //     }
-    // });
 
     // Show where in the overall spectrum of values it stands
     polygonSeries.mapPolygons.template.events.on("over", function (ev) {
@@ -185,6 +164,6 @@ am4core.ready(function () {
 
     // Create hover state and set alternative fill color
     var hs = polygonTemplate.states.create("hover");
-    hs.properties.fill = am4core.color("darkblue");
+    hs.properties.fill = am4core.color("#FCFBFB");
 });
 // end am4core.ready()

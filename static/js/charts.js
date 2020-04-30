@@ -2,12 +2,8 @@
 
 // get data from Python-converted-to-JSON object 
 var data = JSON.parse(document.getElementById('timeline').textContent);
-var date = [];
-var cases = [];
-for (const d in data) {
-    date.push(d)
-    cases.push(data[d])
-}
+var date = data.date;
+var cases = data.cases;
 
 
 // Line Chart
@@ -21,11 +17,11 @@ var chart = new Chart(ctx, {
         // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         labels: date,
         datasets: [{
-            label: 'Last 7 days',
-            backgroundColor: "rgba(255,99,132,0.1)",
-            borderColor: "rgba(255,99,132,1)",
-            borderWidth: 1,
-            pointHoverRadius: 1,
+            // label: 'Last 7 days',
+            // backgroundColor: "rgba(255, 255, 255)",
+            borderColor: "#0099ff",
+            borderWidth: 3,
+            pointHoverRadius: 3,
             // hoverBackgroundColor: "rgba(255,99,132,0.4)",
             // hoverBorderColor: "rgba(255,99,132,1)",
             data: cases
@@ -41,12 +37,12 @@ var chart = new Chart(ctx, {
                 stacked: true,
                 gridLines: {
                     display: true,
-                    color: "rgba(255,99,132,0.2)"
+                    color: "rgba(0,0,0,0.1)"
                 },
                 ticks: {
                     fontColor: "black",
                     fontSize: 10,
-                    stepSize: 200000,
+                    stepSize: 10000,
                     beginAtZero: true
                 },
             }],
@@ -60,12 +56,13 @@ var chart = new Chart(ctx, {
                 },
             }],
         },
-        legend: {
-            labels: {
-                fontColor: "black",
-                fontSize: 12
-            }
-        }
+        legend: false
+        // {
+        //     labels: {
+        //         fontColor: "black",
+        //         fontSize: 12
+        //     }
+        // }
     }
 });
 
