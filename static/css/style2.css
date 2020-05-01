@@ -6,6 +6,7 @@ body {
     /* background-color: #191e25; */
     /* color: whitesmoke; */
     height: 100%;
+    width: 100%;
 }
 
 nav {
@@ -132,19 +133,10 @@ label:active:after {
     width: 30px;
 } */
 
-/* Assign grid instructions to our parent grid container, mobile-first (hide the sidenav) */
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 50px;
-    grid-template-areas: "main";
-    height: 100vh;
-}
-
-.main {
+/* .main {
     grid-area: main;
     /* background-color: #d3d3d3; */
-}
+/* } */
 
 .card {
     box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.16);
@@ -178,11 +170,6 @@ label:active:after {
 .cases {
     padding: 10px 0 10px 0;
     border-bottom: 1px solid #818181;
-}
-
-.card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
 }
 
 .img-square-wrapper img {
@@ -232,7 +219,7 @@ label:active:after {
     overflow-x: auto;
     /* margin-top: 10px; */
     width: 100%;
-    overflow: auto;
+    /* overflow: auto; */
     height: 50vh;
     border-radius: 10px;
     /* box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.16); */
@@ -250,10 +237,35 @@ label:active:after {
 
 .tableFixHead tbody td {
     padding-left: 10px;
+    background-color: white;
+}
+
+.tableFixHead tbody .state {
+    position: sticky;
+    z-index: 1;
+    left: 0;
+}
+
+.tableFixHead thead .state {
+    position: sticky;
+    z-index: 2;
+    left: 0;
+}
+
+.protect ul li i {
+    color: teal;
+}
+
+.protect ul li {
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+.protect ul li span {
+    font-size: larger;
 }
 
 /* scrollbar */
-
 ::-webkit-scrollbar-track {
     background: none;
 }
@@ -269,16 +281,16 @@ label:active:after {
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-/* @media screen and (max-height: 450px) {
+@media screen and (max-height: 450px) {
     .sidebar {
         padding-top: 15px;
     }
     .sidebar a {
         font-size: 18px;
     }
-} */
+}
 
-/*  */
+/* Mobile devices */
 @media only screen and (max-width: 600px) {
     .cards-map {
         display: none;
@@ -286,22 +298,5 @@ label:active:after {
 
     #visual {
         display: none;
-    }
-}
-
-/* Non-mobile styles, 750px breakpoint */
-@media only screen and (min-width: 46.875em) {
-    /* Show the sidenav */
-    .grid-container {
-        grid-template-columns: 1fr;
-        grid-template-areas: "main";
-    }
-}
-
-/* Medium screens breakpoint (1050px) */
-@media only screen and (min-width: 65.625em) {
-    /* Break out main cards into two columns */
-    .main-cards {
-        column-count: 1;
     }
 }
