@@ -71,6 +71,10 @@ def get_news():
         for i in range(len(news['articles'])):
             news['articles'][i]['title'] = news['articles'][i]['title'].split(
                 ' - ')[0]
+        # modify source name to match clearbit logo API
+        for link in news['articles']:
+            source = link['url'].split('/')[2]
+            link['source']['name'] = source.replace('www.', '')
     else:
         news = {}
 
