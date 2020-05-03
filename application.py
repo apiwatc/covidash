@@ -9,18 +9,24 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    state, total = get_cases()
+    state, total = get_USA_cases()
     news = get_news()
     timeline = get_history()
 
     return render_template('index.html', states=state, total=total, news=news, timeline=timeline)
 
 
-def get_cases():
+@app.route("/world")
+def world():
+    countries, world_total, world_map = get_world_cases()
+
+    return render_template('world.html', countries=countries, world_total=world_total, world_map=world_map)
+
+
+def get_USA_cases():
     """ Return COVID cases by States and total cases in the U.S. """
 
     CASE_URL = 'https://corona.lmao.ninja/'
-
     state = total = {}
 
     if requests.get(CASE_URL).status_code == 200:
@@ -53,15 +59,15 @@ def get_cases():
 def get_news():
     """ Return top news results relate to Coronavirus """
 
-    # load_dotenv('.env')
-    # key = os.environ['apiKey']
+    load_dotenv('.env')
+    key = os.environ['apiKey']
     NEWS_URL = ('http://newsapi.org/v2/top-headlines?'
                 'q=coronavirus&'
                 'language=en&'
                 'country=us&'
                 'pageSize=10&'
                 'sortBy=popularity&'
-                'apiKey=8733c94151784006a710bb1608cdc79f')
+                f'apiKey={key}')
 
     res_news = requests.get(NEWS_URL)
 
@@ -105,3 +111,32 @@ def get_history():
     threshold['cases'] = cases
 
     return threshold
+
+
+def get_world_cases():
+    """ Return COVID cases worldwide """
+
+    URL = 'https://corona.lmao.ninja/'
+    countries = world_total = {}
+
+    if requests.get(URL).status_code == 200:
+        res_countries = requests.get(URL + 'v2/countries')
+        countries = json.loads(res_countries.text)
+        countries = sorted(countries, key=lambda d: d['cases'], reverse=True)
+
+        res_total = requests.get(URL + 'v2/all')
+        world_total = json.loads(res_total.text)
+
+    # map data to match JS map library for displaying circle image and tooltip on countries
+    world_map = []
+    for data in countries:
+        world_map.append({
+            'title': data['country'],
+            'latitude': data['countryInfo']['lat'],
+            'longitude': data['countryInfo']['long'],
+            'cases': data['cases'],
+            'recovered': data['recovered'],
+            'deaths': data['deaths']
+        })
+
+    return countries, world_total, world_map
