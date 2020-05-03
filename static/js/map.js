@@ -1,6 +1,6 @@
 am4core.ready(function () {
     // Themes begin
-    am4core.useTheme(am4themes_dark);
+    // am4core.useTheme(am4themes_dark);
     am4core.useTheme(am4themes_animated);
     // Themes end
 
@@ -150,15 +150,15 @@ am4core.ready(function () {
     polygonTemplate.nonScalingStroke = true;
     polygonTemplate.strokeWidth = 0.1;
     polygonTemplate.tooltipHTML =
-        `<center><strong>{name}</strong></center><p></p>
+        `<center><strong>{name}</strong></center>
         <table>
             <tr>
-                <th align="left"><span style="color:blue;">&#9679;</span> Cases</th>
-                <td>{cases}</td>
+                <th align="left"><span style="color:blue;">&#9679;</span> Cases: </th>
+                <td align="right">{cases}</td>
             </tr>
             <tr>
-                <th align="left"><span style="color:orange;">&#9679;</span> <span style="font-size:10">Desease:</span></th>
-                <td>{decease}</td>
+                <th align="left"><span style="color:orange;">&#9679;</span> Desease: </span></th>
+                <td align="right">{decease}</td>
             </tr>
         </table>`;
 
