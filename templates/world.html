@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+<!-- World Map -->
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/maps.js"></script>
+<script src="https://www.amcharts.com/lib/4/geodata/worldLow.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+{% endblock %}
+
+{% block nav %}
+<div class="menu-item">
+    <button onclick="document.location = '/'" class="btn btn-outline-secondary my-2 my-sm-0 mr-1"
+        type="button">USA</button>
+    <button onclick="document.location = 'world'" class="btn btn-outline-secondary my-2 my-sm-0 active"
+        type="button">World</button>
+</div>
+{% endblock %}
+
+{% block content %}
+<style>
+    .card {
+        box-shadow: none;
+    }
+</style>
+
+{% block script %}
+<script src="{{ url_for('static', filename='js/world_map.js') }}"></script>
+{% endblock %}
+
+<div class="container-fluid pl-md-5 pr-md-5 pb-3 mt-4">
+    <div class="row justify-content-md-center">
+        <div class="col pl-md-3 pr-md-3 mb-3">
+
+            <!-- Overview case -->
+            <div class="container-fluid mt-3">
+                <div class="row">
+                    <div class="col justify-content-md-center text-center">
+                        <div class="card-deck">
+                            <div class="card mx-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Confirmed</h5>
+                                    <h3 class="card-text text-primary">
+                                        <strong>{{"{:,}".format(world_total.cases)}}</strong></h3>
+                                </div>
+                            </div>
+                            <div class="card mx-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Recovered</h5>
+                                    <h3 class="card-text text-success">
+                                        <strong>{{"{:,}".format(world_total.recovered)}}</strong></h3>
+                                </div>
+                            </div>
+                            <div class="card mx-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Decease</h5>
+                                    <h3 class="card-text text-danger">
+                                        <strong>{{"{:,}".format(world_total.deaths)}}</strong></h3>
+                                </div>
+                            </div>
+                            <div class="card mx-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active</h5>
+                                    <h3 class="card-text text-warning">
+                                        <strong>{{"{:,}".format(world_total.active)}}</strong></h3>
+                                </div>
+                            </div>
+                            <div class="card mx-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tests</h5>
+                                    <h3 class="card-text text-info">
+                                        <strong>{{"{:,}".format(world_total.tests)}}</strong></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Map -->
+            <!-- {{countries}} -->
+            <div id="countries" style="display: none;">{{ countries|tojson }}</div>
+            <script src="{{ url_for('static', filename='js/world.map.js') }}"></script>
+            <div id="chartdiv" class="mt-5" style="margin-top:20px; width:100%; height:500px; overflow:hidden;"></div>
+        </div>
+
+        <!-- Countries table -->
+        <div class="col-sm-5 pl-md-3 pr-md-3 mb-3">
+            <div class="card" style="overflow: auto; height: 80vh;">
+                <table class="table table-hover table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="sticky-top">Countries</th>
+                            <th scope="col" class="sticky-top">Confirmed</th>
+                            <th scope="col" class="sticky-top">Recovered</th>
+                            <th scope="col" class="sticky-top">Decease</th>
+                            <th scope="col" class="sticky-top">Active</th>
+                            <th scope="col" class="sticky-top">Tests</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for country in countries %}
+                        <tr>
+                            <th scope="row"><img src="{{country.countryInfo.flag}}" width="40" height="20" alt="">
+                                {{country.country}}</th>
+                            <td>{{"{:,}".format(country.cases)}}</td>
+                            <td>{{"{:,}".format(country.recovered)}}</td>
+                            <td>{{"{:,}".format(country.deaths)}}</td>
+                            <td>{{"{:,}".format(country.active)}}</td>
+                            <td>{{"{:,}".format(country.tests)}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
