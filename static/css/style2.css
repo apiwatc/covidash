@@ -15,8 +15,12 @@ nav {
     width: 100%;
 }
 
-/* Side bar */
+.menu-item {
+    position: fixed;
+    right: 8px;
+}
 
+/* Side bar */
 .sidebar {
     height: 100%;
     width: 0;
@@ -297,6 +301,10 @@ label:active:after {
     }
 
     #visual {
+        display: none;
+    }
+
+    #chartdiv {
         display: none;
     }
 }
