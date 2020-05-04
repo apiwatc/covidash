@@ -11,13 +11,15 @@
 {% block nav %}
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <button onclick="document.location = '/'" class="btn btn-outline-secondary my-2 my-sm-0 mr-1 active"
-            type="button">USA</button>
-        <button onclick="document.location = 'world'" class="btn btn-outline-secondary my-2 my-sm-0"
-            type="button">World</button>
+        <button onclick="goHome()" class="btn btn-outline-secondary my-2 my-sm-0 mr-1 active" type="button">USA</button>
+        <button onclick="goWorld()" class="btn btn-outline-secondary my-2 my-sm-0" type="button">World</button>
     </ul>
 </div>
-
+<script>
+    function goWorld() {
+        location.href = "{{ url_for('world') }}";
+    }
+</script>
 {% endblock %}
 
 {% block content %}
@@ -126,13 +128,13 @@
         <div class="col pl-md-3 pr-md-3 mb-3">
             <div class="card" style="width:100%; overflow:auto; height:50vh;">
                 <div class="tableFixHead">
-                    <table class="table table-sm">
+                    <table class="table table-sm table-hover table-striped">
                         <thead>
                             <tr>
-                                <th scope="col" class="state">States</th>
-                                <th scope="col">Confirmed</th>
-                                <th scope="col">Decease</th>
-                                <th scope="col">Active</th>
+                                <th scope="col" class="sticky-top state">States</th>
+                                <th scope="col" class="sticky-top">Confirmed</th>
+                                <th scope="col" class="sticky-top">Decease</th>
+                                <th scope="col" class="sticky-top">Active</th>
                             </tr>
                         </thead>
                         <tbody>

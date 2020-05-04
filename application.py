@@ -15,12 +15,12 @@ app.config.update(
 
 
 @app.route("/")
-def index():
+def home():
     state, total = get_USA_cases()
     news = get_news()
     timeline = get_history()
 
-    return render_template('index.html', states=state, total=total, news=news, timeline=timeline)
+    return render_template('home.html', states=state, total=total, news=news, timeline=timeline)
 
 
 @app.route("/world")

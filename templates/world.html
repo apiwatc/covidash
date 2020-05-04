@@ -11,19 +11,22 @@
 {% block nav %}
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <button onclick="document.location = '/'" class="btn btn-outline-secondary my-2 my-sm-0 mr-1"
-            type="button">USA</button>
-        <button onclick="document.location = 'world'" class="btn btn-outline-secondary my-2 my-sm-0 active"
-            type="button">World</button>
+        <button onclick="goHome()" class="btn btn-outline-secondary my-2 my-sm-0 mr-1" type="button">USA</button>
+        <button onclick="goWorld()" class="btn btn-outline-secondary my-2 my-sm-0 active" type="button">World</button>
     </ul>
 </div>
+<script>
+    function goHome() {
+        location.href = "{{ url_for('home') }}";
+    }
+</script>
 {% endblock %}
 
 
 {% block content %}
 <style>
     .card {
-        box-shadow: none;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.16);
     }
 </style>
 
