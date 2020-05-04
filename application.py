@@ -4,7 +4,14 @@ import requests
 import os
 import collections
 
+load_dotenv('.env')
+
 app = Flask(__name__)
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_SAMESITE='Lax',
+    SECRET_KEY=os.environ['SECRET_KEY'],
+)
 
 
 @app.route("/")
@@ -60,14 +67,8 @@ def get_news():
     """ Return top news results relate to Coronavirus """
 
     # load_dotenv('.env')
-    # key = os.environ['apiKey']
-    NEWS_URL = ('http://newsapi.org/v2/top-headlines?'
-                'q=coronavirus&'
-                'language=en&'
-                'country=us&'
-                'pageSize=10&'
-                'sortBy=popularity&'
-                'apiKey=8733c94151784006a710bb1608cdc79f')
+    API_KEY = os.environ['API_KEY']
+    NEWS_URL = ('http://newsapi.org/v2/top-headlines?q=coronavirus&language=en&country=us&pageSize=10&sortBy=popularity&apiKey='+API_KEY)
 
     res_news = requests.get(NEWS_URL)
 
