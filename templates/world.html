@@ -9,13 +9,16 @@
 {% endblock %}
 
 {% block nav %}
-<div class="menu-item">
-    <button onclick="document.location = '/'" class="btn btn-outline-secondary my-2 my-sm-0 mr-1"
-        type="button">USA</button>
-    <button onclick="document.location = 'world'" class="btn btn-outline-secondary my-2 my-sm-0 active"
-        type="button">World</button>
+<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <button onclick="document.location = '/'" class="btn btn-outline-secondary my-2 my-sm-0 mr-1"
+            type="button">USA</button>
+        <button onclick="document.location = 'world'" class="btn btn-outline-secondary my-2 my-sm-0 active"
+            type="button">World</button>
+    </ul>
 </div>
 {% endblock %}
+
 
 {% block content %}
 <style>

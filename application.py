@@ -59,15 +59,15 @@ def get_USA_cases():
 def get_news():
     """ Return top news results relate to Coronavirus """
 
-    load_dotenv('.env')
-    key = os.environ['apiKey']
+    # load_dotenv('.env')
+    # key = os.environ['apiKey']
     NEWS_URL = ('http://newsapi.org/v2/top-headlines?'
                 'q=coronavirus&'
                 'language=en&'
                 'country=us&'
                 'pageSize=10&'
                 'sortBy=popularity&'
-                f'apiKey={key}')
+                'apiKey=8733c94151784006a710bb1608cdc79f')
 
     res_news = requests.get(NEWS_URL)
 

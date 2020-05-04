@@ -15,11 +15,6 @@ nav {
     width: 100%;
 }
 
-.menu-item {
-    position: fixed;
-    right: 8px;
-}
-
 /* Side bar */
 .sidebar {
     height: 100%;

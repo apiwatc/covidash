@@ -157,7 +157,7 @@ am4core.ready(function () {
                 <td align="right">{cases}</td>
             </tr>
             <tr>
-                <th align="left"><span style="color:orange;">&#9679;</span> Desease: </span></th>
+                <th align="left"><span style="color:orange;">&#9679;</span> Decease: </span></th>
                 <td align="right">{decease}</td>
             </tr>
         </table>`;
