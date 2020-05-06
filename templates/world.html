@@ -34,14 +34,14 @@
 <script src="{{ url_for('static', filename='js/world_map.js') }}"></script>
 {% endblock %}
 
-<div class="container-fluid pl-md-5 pr-md-5 pb-3 mt-4">
+<div class="container-fluid pl-md-5 pr-md-5 pb-3 mt-5">
     <div class="row justify-content-md-center">
         <div class="col pl-md-3 pr-md-3 mb-3">
 
             <!-- Overview case -->
-            <div class="container-fluid mt-3">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col justify-content-md-center text-center">
+                    <div class="col justify-content-md-center text-center p-0">
                         <div class="card-deck">
                             <div class="card mx-1">
                                 <div class="card-body">
@@ -108,9 +108,19 @@
                         <tr>
                             <th scope="row"><img src="{{country.countryInfo.flag}}" width="40" height="20" alt="">
                                 {{country.country}}</th>
-                            <td>{{"{:,}".format(country.cases)}}</td>
+                            <td>{{"{:,}".format(country.cases)}}
+                                {% if country.todayCases != 0 %}
+                                <small class="text-primary">
+                                    (+{{country.todayCases}})</small>
+                                {% endif %}
+                            </td>
                             <td>{{"{:,}".format(country.recovered)}}</td>
-                            <td>{{"{:,}".format(country.deaths)}}</td>
+                            <td>{{"{:,}".format(country.deaths)}}
+                                {% if country.todayDeaths != 0 %}
+                                <small class="text-primary">
+                                    (+{{country.todayDeaths}})</small>
+                                {% endif %}
+                            </td>
                             <td>{{"{:,}".format(country.active)}}</td>
                             <td>{{"{:,}".format(country.tests)}}</td>
                         </tr>
