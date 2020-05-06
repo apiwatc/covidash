@@ -1,5 +1,7 @@
 # ![logo](/static/favicon/virus2.png) **Covidash - Tracking COVID-19 dashboard**
 
+A minimal coronavirus dashboard that tracks the numbers of cases in the US and other countries.
+
 🚀 **Technologies**
 
 -   Python 3.7+
