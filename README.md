@@ -4,9 +4,19 @@
 
 -   Python 3.7+
 -   Flask
+-   Bootstrap 4.3+
+-   Microsoft Azure
 
-**Sources:**
+**Data Sources**
 
--   https://github.com/NovelCOVID/API
+-   NovelCOVID
+-   JHU CSSE
+-   NYT
+-   News API
+-   CDC
+
+**Graphics**
+
 -   Amchart
 -   Chart.js
+-   Clearbit
