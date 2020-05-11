@@ -10,16 +10,16 @@
 
 {% block nav %}
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <div class="navbar-nav mr-auto mt-2 mt-lg-0">
         <button onclick="goHome()" class="btn btn-outline-secondary my-2 my-sm-0 mr-1 active" type="button">USA</button>
-        <button onclick="goWorld()" class="btn btn-outline-secondary my-2 my-sm-0" type="button">World</button>
-    </ul>
+        <button onclick="goWorld()" class="btn btn-outline-secondary my-2 my-sm-0 mr-1" type="button">World</button>
+    </div>
+    <div class="navbar-nav navbar-right">
+        <button
+            onclick="location.href = 'https://www.nytimes.com/interactive/2020/us/states-reopen-map-coronavirus.html'"
+            class="btn btn-outline-info my-2 my-sm-0" type="button">States Status</button>
+    </div>
 </div>
-<script>
-    function goWorld() {
-        location.href = "{{ url_for('world') }}";
-    }
-</script>
 {% endblock %}
 
 {% block content %}

@@ -10,16 +10,12 @@
 
 {% block nav %}
 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <div class="navbar-nav mr-auto mt-2 mt-lg-0">
         <button onclick="goHome()" class="btn btn-outline-secondary my-2 my-sm-0 mr-1" type="button">USA</button>
-        <button onclick="goWorld()" class="btn btn-outline-secondary my-2 my-sm-0 active" type="button">World</button>
-    </ul>
+        <button onclick="goWorld()" class="btn btn-outline-secondary my-2 my-sm-0 mr-1 active"
+            type="button">World</button>
+    </div>
 </div>
-<script>
-    function goHome() {
-        location.href = "{{ url_for('home') }}";
-    }
-</script>
 {% endblock %}
 
 

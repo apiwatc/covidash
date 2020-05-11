@@ -33,6 +33,15 @@
         {% block nav %}
         {% endblock %}
 
+        <script>
+            function goWorld() {
+                location.href = "{{ url_for('world') }}";
+            }
+            function goHome() {
+                location.href = "{{ url_for('home') }}";
+            }
+        </script>
+
         <!-- <input type="checkbox" id="switch" /><label for="switch">Toggle</label> -->
         <div id="mySidebar" class="sidebar">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times</a>
