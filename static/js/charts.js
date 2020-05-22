@@ -70,9 +70,11 @@ var chart = new Chart(ctx, {
 // get data from Python-converted-to-JSON object 
 var dataTotal = JSON.parse(document.getElementById('total').textContent);
 var number = [];
+var label = [];
 for (const s in dataTotal) {
     if (s.includes("Million")) {
         number.push(dataTotal[s])
+        label.push(s.slice(0, s.indexOf("PerOneMillion")))
     }
 }
 
@@ -85,10 +87,11 @@ var chart = new Chart(ctx, {
 
     // The data for our dataset
     data: {
-        labels: ['Cases', 'Deaths', 'Tests'],
+        // labels: ['Cases', 'Deaths', 'Tests'],
+        labels: label,
         datasets: [{
             label: 'My First dataset',
-            backgroundColor: ['#6CA0DC', '#FFA600', '#49da9a',],
+            backgroundColor: ['#49da9a', 'blue', '#FFA600', 'red', 'green', '#6CA0DC'],
             // borderColor: 'rgb(255, 99, 132)',
             borderWidth: 0,
             data: number
