@@ -5,9 +5,10 @@ A minimal coronavirus dashboard that tracks the numbers of cases in the US and o
 🚀 **Technologies**
 
 -   Python 3.7+
--   Flask
+-   Flask 1.1.2
 -   Bootstrap 4.3+
--   Microsoft Azure
+-   Azure App Service
+-   GCP App Engine
 
 📰 **Data Sources**
 
