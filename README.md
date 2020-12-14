@@ -1,4 +1,4 @@
-# ![logo](/static/favicon/virus2.png) **Covidash - Tracking COVID-19 dashboard**
+# ![logo](/static/favicon/covid.png) **Covidash - Tracking COVID-19 dashboard**
 
 A minimal coronavirus dashboard that tracks the numbers of cases in the US and other countries.
 
